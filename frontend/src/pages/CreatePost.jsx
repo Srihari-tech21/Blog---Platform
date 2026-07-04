@@ -5,6 +5,8 @@ import { useAuth } from '../context/AuthContext';
 import { motion } from 'framer-motion';
 import { PenTool, X, AlertCircle } from 'lucide-react';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
 const CreatePost = () => {
   const [formData, setFormData] = useState({ title: '', content: '' });
   const [error, setError] = useState('');
@@ -23,7 +25,7 @@ const CreatePost = () => {
     setLoading(true);
 
     try {
-      await axios.post('http://localhost:5000/api/posts', formData);
+      await axios.post(`${API_URL}/api/posts`, formData);
       navigate('/');
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to create post');

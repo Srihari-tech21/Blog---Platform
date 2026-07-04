@@ -1,6 +1,8 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
@@ -12,7 +14,7 @@ export const AuthProvider = ({ children }) => {
     if (token) {
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       // Verify token by fetching user info
-      axios.get('http://localhost:5000/api/auth/me')
+      axios.get(`${API_URL}/api/auth/me`)
         .then(response => {
           setUser(response.data);
         })
@@ -29,7 +31,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = async (email, password) => {
-    const response = await axios.post('http://localhost:5000/api/auth/login', {
+    const response = await axios.post(`${API_URL}/api/auth/login`, {
       email,
       password
     });
@@ -40,7 +42,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const register = async (username, email, password) => {
-    const response = await axios.post('http://localhost:5000/api/auth/register', {
+    const response = await axios.post(`${API_URL}/api/auth/register`, {
       username,
       email,
       password

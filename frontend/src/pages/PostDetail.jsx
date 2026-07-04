@@ -5,6 +5,8 @@ import { useAuth } from '../context/AuthContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, MessageCircle, Calendar, User as UserIcon, Trash2, Edit3, Send } from 'lucide-react';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
 const PostDetail = () => {
   const { id } = useParams();
   const [post, setPost] = useState(null);
@@ -19,8 +21,8 @@ const PostDetail = () => {
     const fetchData = async () => {
       try {
         const [postRes, commentsRes] = await Promise.all([
-          axios.get(`http://localhost:5000/api/posts/${id}`),
-          axios.get(`http://localhost:5000/api/comments/post/${id}`)
+          axios.get(`${API_URL}/api/posts/${id}`),
+          axios.get(`${API_URL}/api/comments/post/${id}`)
         ]);
         setPost(postRes.data);
         setComments(commentsRes.data);
@@ -42,7 +44,7 @@ const PostDetail = () => {
 
     setCommentLoading(true);
     try {
-      const response = await axios.post('http://localhost:5000/api/comments', {
+      const response = await axios.post(`${API_URL}/api/comments`, {
         post_id: parseInt(id),
         content: newComment
       });
