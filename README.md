@@ -63,7 +63,7 @@ Building BlogFlow helped me gain practical experience in:
 
 ## 🚀 Live Demo
 
-**Frontend:** *(Add your Netlify URL here)*
+**Frontend:** *(https://blog-frontends.netlify.app/)*
 
 **Backend API:** *(Add your Render URL here)*
 
