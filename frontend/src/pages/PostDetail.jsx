@@ -59,7 +59,7 @@ const PostDetail = () => {
 
   const handleDeleteComment = async (commentId) => {
     try {
-      await axios.delete(`http://localhost:5000/api/comments/${commentId}`);
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/comments/${commentId}`);
       setComments(comments.filter(c => c.id !== commentId));
     } catch (error) {
       console.error('Error deleting comment:', error);
@@ -69,7 +69,7 @@ const PostDetail = () => {
   const handleDeletePost = async () => {
     if (window.confirm('Are you sure you want to delete this post?')) {
       try {
-        await axios.delete(`http://localhost:5000/api/posts/${id}`);
+        await axios.delete(`${import.meta.env.VITE_API_URL}/api/posts/${id}`);
         navigate('/');
       } catch (error) {
         console.error('Error deleting post:', error);

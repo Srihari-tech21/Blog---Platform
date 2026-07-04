@@ -17,7 +17,7 @@ const EditPost = () => {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/posts/${id}`);
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/posts/${id}`);
         if (user && response.data.user_id !== user.id) {
           navigate('/');
           return;
