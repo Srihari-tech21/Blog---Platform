@@ -5,7 +5,7 @@ import { useAuth } from '../context/AuthContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, MessageCircle, Calendar, User as UserIcon, Trash2, Edit3, Send } from 'lucide-react';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const API_URL = 'https://blog-backend-478t.onrender.com';
 
 const PostDetail = () => {
   const { id } = useParams();
@@ -59,7 +59,7 @@ const PostDetail = () => {
 
   const handleDeleteComment = async (commentId) => {
     try {
-      await axios.delete(`${import.meta.env.VITE_API_URL}/api/comments/${commentId}`);
+      await axios.delete(`${API_URL}/api/comments/${commentId}`);
       setComments(comments.filter(c => c.id !== commentId));
     } catch (error) {
       console.error('Error deleting comment:', error);
@@ -69,7 +69,7 @@ const PostDetail = () => {
   const handleDeletePost = async () => {
     if (window.confirm('Are you sure you want to delete this post?')) {
       try {
-        await axios.delete(`${import.meta.env.VITE_API_URL}/api/posts/${id}`);
+        await axios.delete(`${API_URL}/api/posts/${id}`);
         navigate('/');
       } catch (error) {
         console.error('Error deleting post:', error);

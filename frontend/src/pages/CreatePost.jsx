@@ -5,7 +5,7 @@ import { useAuth } from '../context/AuthContext';
 import { motion } from 'framer-motion';
 import { PenTool, X, AlertCircle } from 'lucide-react';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const API_URL = 'https://blog-backend-478t.onrender.com';
 
 const CreatePost = () => {
   const [formData, setFormData] = useState({ title: '', content: '' });

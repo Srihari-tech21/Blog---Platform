@@ -5,6 +5,8 @@ import { useAuth } from '../context/AuthContext';
 import { motion } from 'framer-motion';
 import { Edit3, X, AlertCircle } from 'lucide-react';
 
+const API_URL = 'https://blog-backend-478t.onrender.com';
+
 const EditPost = () => {
   const { id } = useParams();
   const [formData, setFormData] = useState({ title: '', content: '' });
@@ -17,7 +19,7 @@ const EditPost = () => {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/posts/${id}`);
+        const response = await axios.get(`${API_URL}/api/posts/${id}`);
         if (user && response.data.user_id !== user.id) {
           navigate('/');
           return;
@@ -42,7 +44,7 @@ const EditPost = () => {
     setLoading(true);
 
     try {
-      await axios.put(`http://localhost:5000/api/posts/${id}`, formData);
+      await axios.put(`${API_URL}/api/posts/${id}`, formData);
       navigate(`/post/${id}`);
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to update post');

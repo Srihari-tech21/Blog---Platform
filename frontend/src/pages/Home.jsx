@@ -4,7 +4,7 @@ import axios from 'axios';
 import { motion } from 'framer-motion';
 import { MessageCircle, Calendar, User as UserIcon, ArrowRight } from 'lucide-react';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const API_URL = 'https://blog-backend-478t.onrender.com';
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
